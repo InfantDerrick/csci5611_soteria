@@ -1,37 +1,110 @@
-## Welcome to GitHub Pages
+# Project 3 CSCI 5611
 
-You can use the [editor on GitHub](https://github.com/InfantDerrick/csci5611_soteria/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+- Infant Derrick Gnana Susairaj (gnana014)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### About
 
-### Markdown
+For part 2:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+I decided I wanted to make one of those noodle arm things that are in front of car shows and it would be colliding with a wheel. Pretty simple using Inverse Kinematics.
 
-```markdown
-Syntax highlighted code block
+### Code
 
-# Header 1
-## Header 2
-### Header 3
+You can access the code [here](https://github.com/InfantDerrick/csci5611/tree/master/projects/proj3). 
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+#### Inverse Kinematics
+```processing
+    public void inverseKinematics(Vec2 dest) {
+    Vec2 toDest, toEnd;
+    float theta;
+    for(int i = 0; i < 4; i++){
+      toDest = dest.minus(start.get(i));
+      if (i == 0 && toDest.length() < 0.0001) return;
+      toEnd = end.minus(start.get(i));
+      theta = acos(clamp(dot(toDest.normalized(), toEnd.normalized()), -1, 1)) * speedScales.get(i);
+      if (cross(toDest, toEnd) < 0) 
+        jointAngles.set(i, jointAngles.get(i) + theta);
+      else 
+        jointAngles.set(i, jointAngles.get(i) - theta);
+      if (lowerLimits.get(i) == 0 && upperLimits.get(i) == 0){}
+      else{
+        if (jointAngles.get(i) < lowerLimits.get(i))
+          jointAngles.set(i, lowerLimits.get(i));
+        else if (jointAngles.get(i) > upperLimits.get(i))
+          jointAngles.set(i, upperLimits.get(i));
+      }
+      forwardKinematics();
+    }
+  }
+ }
+```
+#### Forward Kinematics
+```processing
+      public void forwardKinematics() {
+    start.set(1, new Vec2(cos(jointAngles.get(0)) * linkLengths.get(0), sin(jointAngles.get(0)) * linkLengths.get(0)).plus(start.get(0)));
+    start.set(2, new Vec2(cos(jointAngles.get(0) + jointAngles.get(1)) * linkLengths.get(1), sin(jointAngles.get(0) + jointAngles.get(1)) * linkLengths.get(1)).plus(start.get(1)));
+    start.set(3, new Vec2(cos(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2)) * linkLengths.get(2), sin(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2)) * linkLengths.get(2)).plus(start.get(2)));
+    end = new Vec2(cos(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2) + jointAngles.get(3)) * linkLengths.get(3), sin(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2) + jointAngles.get(3)) * linkLengths.get(3)).plus(start.get(3));
+  }
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+### Media
 
-### Jekyll Themes
+[Main Demo (Dance)](https://youtu.be/DqYLLQlvAAQ).
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/InfantDerrick/csci5611_soteria/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+[Collision Demo](https://youtu.be/G7Fb5YU53-E).
+# Project 3 CSCI 5611
 
-### Support or Contact
+- Infant Derrick Gnana Susairaj (gnana014)
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### About
+
+For part 2:
+
+I decided I wanted to make one of those noodle arm things that are in front of car shows and it would be colliding with a wheel. Pretty simple using Inverse Kinematics.
+
+### Code
+
+You can access the code [here](https://github.com/InfantDerrick/csci5611/tree/master/projects/proj3). 
+
+#### Inverse Kinematics
+```processing
+    public void inverseKinematics(Vec2 dest) {
+    Vec2 toDest, toEnd;
+    float theta;
+    for(int i = 0; i < 4; i++){
+      toDest = dest.minus(start.get(i));
+      if (i == 0 && toDest.length() < 0.0001) return;
+      toEnd = end.minus(start.get(i));
+      theta = acos(clamp(dot(toDest.normalized(), toEnd.normalized()), -1, 1)) * speedScales.get(i);
+      if (cross(toDest, toEnd) < 0) 
+        jointAngles.set(i, jointAngles.get(i) + theta);
+      else 
+        jointAngles.set(i, jointAngles.get(i) - theta);
+      if (lowerLimits.get(i) == 0 && upperLimits.get(i) == 0){}
+      else{
+        if (jointAngles.get(i) < lowerLimits.get(i))
+          jointAngles.set(i, lowerLimits.get(i));
+        else if (jointAngles.get(i) > upperLimits.get(i))
+          jointAngles.set(i, upperLimits.get(i));
+      }
+      forwardKinematics();
+    }
+  }
+ }
+```
+#### Forward Kinematics
+```processing
+      public void forwardKinematics() {
+    start.set(1, new Vec2(cos(jointAngles.get(0)) * linkLengths.get(0), sin(jointAngles.get(0)) * linkLengths.get(0)).plus(start.get(0)));
+    start.set(2, new Vec2(cos(jointAngles.get(0) + jointAngles.get(1)) * linkLengths.get(1), sin(jointAngles.get(0) + jointAngles.get(1)) * linkLengths.get(1)).plus(start.get(1)));
+    start.set(3, new Vec2(cos(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2)) * linkLengths.get(2), sin(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2)) * linkLengths.get(2)).plus(start.get(2)));
+    end = new Vec2(cos(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2) + jointAngles.get(3)) * linkLengths.get(3), sin(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2) + jointAngles.get(3)) * linkLengths.get(3)).plus(start.get(3));
+  }
+```
+
+### Media
+
+[Main Demo (Dance)](https://youtu.be/DqYLLQlvAAQ).
+
+[Collision Demo](https://youtu.be/G7Fb5YU53-E).
