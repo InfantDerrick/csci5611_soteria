@@ -173,6 +173,11 @@ During the related work search, we came across many papers about collision detec
 
 During the progress report, we received a lot of positive feedback about how our environment looks and the overall 3D movement and rendering. However, a common suggestion for our project was to create enemies to shoot and kill so that the user has something to shoot at. In our final version, we added the zombies from the Unity Store as our targets and integrated our pathfinding algorithm and ray tracing to interact with the user. Therefore, in our final version, we successfully added enemies and other features like the shielding blocks, crystal, and ray tracing to make the overall game smoother and a lot more complete compared to the progress report. The feedback definitely helped us take the game into a better direction to create a better final version of Soteria.
 
+### Evolution of Project
+
+While planning this project out, we intended for the building mechanics to be used in terms of a fluid particle simulation so that it can effectively block the enemies from the user. However, while implementing the game, we ended up pivoting to a rigid body simulation of simple blocks to defend the user. The enemies were supposed to be particle systems, but instead we changed to zombies. Finally, we meant for the user to use magic projectiles to attack the enemy and defend the crystal, but we didn't have time to enhance the physics of the magic so we chose to switch to use a gun with ray tracing instead.
+
+
 ### Future Work
 
 There are some directions Soteria can be extended to make the interactive game even better. We can create the enemies/zombies dynamically and make sure each one is unique so that it is scaleable as more time passes and the enemies act differently so the user has to be more strategic. Also, as I mentioned earlier, the shielding mechanism is just building blocks currently so we would want that to be more fluid obstacles that block the zombies/enemies. Additional features that can be implemented are multiple maps/environments that the user can play in and also, include some different powerups to help the user survive. For instance, we can have a slow down power up that slows down the zombies.
