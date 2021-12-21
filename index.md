@@ -1,12 +1,15 @@
-# Project 3 CSCI 5611
+# CSCI 5611 Final Project
 
 - Infant Derrick Gnana Susairaj (gnana014)
+- Kailash Kalyanasundaram (kalya023)
 
-### About
+## Project Description
 
-For part 2:
+For the Final Project:
 
-I decided I wanted to make one of those noodle arm things that are in front of car shows and it would be colliding with a wheel. Pretty simple using Inverse Kinematics.
+We decided to create a Interactive Game called Σωτηρία (Soteria).  We love playing competitive FPS games, like COD and CSGO, so we wanted to create our own FPS game using topics we covered from class this semester. We created Soteria, where the user navigates through our terrain protecting a crystal from zombies at night. To assist with survival, we created a shield mechanism with blocks using Collision Detection and Rigid Bodies to block the zombies out like in Minecraft. We implemented ray tracing to simulate bullet mechanics, which helps the user kill zombies and survive longer. The zombies will start following the user based on the user's proximity using our pathfinding algorithm. The goal of the game is to protect the crystal and stay alive as long as possible. 
+
+### Key Algorithms and Approaches
 
 ### Code
 
@@ -48,8 +51,6 @@ You can access the code [here](https://github.com/InfantDerrick/csci5611/tree/ma
   }
 ```
 
-### Media
+## Media
 
-[Main Demo (Dance)](https://youtu.be/DqYLLQlvAAQ).
-
-[Collision Demo](https://youtu.be/G7Fb5YU53-E).
+[Main Final Project Demo]( https://youtu.be/msnqzk_xdiY).
