@@ -156,18 +156,18 @@ for (int y = 0; y < height; y++) {
  }
 ```
 
-For our projects success, we had to use a multitude of things we learned in class.
+For our project's success, we had to use a multitude of things we learned in class.
 - RigidBody Simulation
 - Collision Detection
 - Path Finding
 - Ray Tracing
 - Terrain Generation using noise
 
-I think the limiting factor when scaling this project would be the way that we implemented our opponents in this game. Currently how it is set is there are a limited amount of opponents pregenerated that are just rendered and de-rendered based on the location of the player is on. If the map parameters were set to be bigger than they are right now, then we would need to create way more enemies which would increase the size of the projects unreasonabley. If we were to proceed with this and try to deploy it where the enemies are spwaned in dynamically, the performance would not dip regardless of the size of them map. We were able to get the generation of the blocks that are generated to be dynamic but with the opponent having so many coponents and changes and animation, it was hard for us to deploy an opponent that was competent and followed all the rules of the game.
+I think the limiting factor when scaling this project would be the way that we implemented our opponents in this game. Currently how it is set is there are a limited amount of opponents pregenerated that are just rendered and de-rendered based on the location of the player is on. If the map parameters were set to be bigger than they are right now, then we would need to create way more enemies which would increase the size of the projects unreasonabley. If we were to proceed with this and try to deploy it where the enemies are spwaned in dynamically, the performance would not dip regardless of the size of them map. We were able to get the generation of the blocks that are generated to be dynamic but with the opponent having so many coponents and changes and animation, it was hard for us to deploy an opponent that was competent and followed all the rules of the game. 
 
 ### State-of-the-Art Approaches
 
-During the related work search, we came across many papers about collision detection and planning in games. The two main state-of-the-art techniques we researched were bounding box collision detection and collision detection using air meshes. Implementing collision detection with air meshes in Unity was too challenging for what we wanted to do in Soteria. Furthermore, we wanted to make an intuitive building schema to protect the user from the zombies. To do this, we used the state-of-the-art bounding box collision detection techniques in terms of actual building blocks to test it. Unfortunately, we din't have enough time to make it more realistic so we just used building blocks like in Minecraft to show the bounding box collsion detection technique during the game. These boxes are built by the user to protect the crystal and themselves from the zombies. The zombies can't get through the boxes and tries to go to the user in another way instead because of the bounding box collision detection. Therefore, the related work research was indeed very helpful for us because we ended up using a very similar apprach to the bounding box approach that we researched as our shielding mechanism for our game.
+During the related work search, we came across many papers about collision detection and planning in games. The two main state-of-the-art techniques we researched were bounding box collision detection and collision detection using air meshes. Implementing collision detection with air meshes in Unity was too challenging for what we wanted to do in Soteria. Furthermore, we wanted to make an intuitive building schema to protect the user from the zombies. To do this, we used the state-of-the-art bounding box collision detection techniques in terms of actual building blocks to test it. Unfortunately, we didn't have enough time to make it more realistic so we just used building blocks like in Minecraft to show the bounding box collsion detection technique during the game. These boxes are built by the user to protect the crystal and the user from the zombies. The zombies can't get through the boxes and reroutes to the user in another way instead because of the bounding box collision detection technique. Therefore, the related work research was very helpful for us because we ended up using a very similar approach to the bounding box approach that we researched for the shielding mechanism in our game.
 
 ### Feedback Discussion
 
@@ -175,7 +175,7 @@ During the progress report, we received a lot of positive feedback about how our
 
 ### Future Work
 
-There are some directions Soteria can be extended to make the interactive game even better. We can create the enemies dynamically and make sure each one is unique so that it is scaleable as more time passes and the enemies act differently so the user has to be more strategic. Also, as I mentioned earlier, the shielding mechanism is just building blocks so we would want that to be more fluid obstacles that block the zombies/enemies. Additional features that can be implemented are multiple maps/environments that the user can play in and also, include some different powerups to help the user survive. For instance, we can have a slow down power up that slows down the zombies.
+There are some directions Soteria can be extended to make the interactive game even better. We can create the enemies/zombies dynamically and make sure each one is unique so that it is scaleable as more time passes and the enemies act differently so the user has to be more strategic. Also, as I mentioned earlier, the shielding mechanism is just building blocks currently so we would want that to be more fluid obstacles that block the zombies/enemies. Additional features that can be implemented are multiple maps/environments that the user can play in and also, include some different powerups to help the user survive. For instance, we can have a slow down power up that slows down the zombies.
 
 ## Media
 
