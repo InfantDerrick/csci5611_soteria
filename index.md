@@ -15,41 +15,158 @@ We decided to create a Interactive Game called Σωτηρία (Soteria).  We lov
 
 You can access the code [here](https://github.com/InfantDerrick/csci5611/tree/master/projects/proj3). 
 
-#### Inverse Kinematics
-```processing
-    public void inverseKinematics(Vec2 dest) {
-    Vec2 toDest, toEnd;
-    float theta;
-    for(int i = 0; i < 4; i++){
-      toDest = dest.minus(start.get(i));
-      if (i == 0 && toDest.length() < 0.0001) return;
-      toEnd = end.minus(start.get(i));
-      theta = acos(clamp(dot(toDest.normalized(), toEnd.normalized()), -1, 1)) * speedScales.get(i);
-      if (cross(toDest, toEnd) < 0) 
-        jointAngles.set(i, jointAngles.get(i) + theta);
-      else 
-        jointAngles.set(i, jointAngles.get(i) - theta);
-      if (lowerLimits.get(i) == 0 && upperLimits.get(i) == 0){}
-      else{
-        if (jointAngles.get(i) < lowerLimits.get(i))
-          jointAngles.set(i, lowerLimits.get(i));
-        else if (jointAngles.get(i) > upperLimits.get(i))
-          jointAngles.set(i, upperLimits.get(i));
-      }
-      forwardKinematics();
+#### Build Using Power
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
+
+public class  Build : MonoBehaviour
+{
+    [SerializeField] Camera fpsCamera;
+    [SerializeField] RigidbodyFirstPersonController fpsController;
+    public GameObject obs;
+    private void OnDisable()
+    {
+        
     }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+          Build(Input.mousePosition);
+        }
+    }
+    public void PutCoin(Vector2 mousePosition)
+    {
+        RaycastHit hit = RayFromCamera(mousePosition, 1000.0f);
+        GameObject.Instantiate(coinPrefab, hit.point, Quaternion.identity);
+    }
+
+    public RaycastHit RayFromCamera(Vector3 mousePosition, float rayLength)
+    {
+         RaycastHit hit;
+         Ray ray = Camera.main.ScreenPointToRay(mousePosition);
+         Physics.Raycast(ray, out hit, rayLength);
+         return hit;
+    }
+}
+```
+#### OpTargeting
+```c#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class OpTargeting : MonoBehaviour
+{
+    [SerializeField] float chaseRange = 5f;
+    [SerializeField] float turnSpeed = 5f;
+
+    NavMeshAgent navMeshAgent;
+    float distanceToTarget = Mathf.Infinity;
+    bool isProvoked = false;
+    EnemyHealth health;
+    Transform target;
+
+    void Start()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealth>();
+        target = FindObjectOfType<PlayerHealth>().transform;
+    }
+
+    void Update()
+    {
+        if (health.IsDead())
+        {
+            enabled = false;
+            navMeshAgent.enabled = false;
+        }
+        distanceToTarget = Vector3.Distance(target.position, transform.position);
+        if (isProvoked)
+        {
+            EngageTarget();
+        }
+        else if (distanceToTarget <= chaseRange)
+        {
+            isProvoked = true;
+        }
+    }
+
+    public void OnDamageTaken()
+    {
+        isProvoked = true;
+    }
+
+    private void EngageTarget()
+    {
+        FaceTarget();
+        if (distanceToTarget >= navMeshAgent.stoppingDistance)
+        {
+            ChaseTarget();
+        }
+
+        if (distanceToTarget <= navMeshAgent.stoppingDistance)
+        {
+            AttackTarget();
+        }
+    }
+
+    private void ChaseTarget()
+    {
+        GetComponent<Animator>().SetBool("attack", false);
+        GetComponent<Animator>().SetTrigger("move");
+        navMeshAgent.SetDestination(target.position);
+    }
+
+    private void AttackTarget()
+    {
+        GetComponent<Animator>().SetBool("attack", true);
+    }
+
+    private void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, chaseRange);
+    }
+}
+```
+#### Terrain Generation using noise
+```c#
+public double noise(double nx, double ny) {
+  // Rescale from -1.0:+1.0 to 0.0:1.0
+  return gen.GetValue(nx, ny, 0) / 2.0 + 0.5;
+}
+
+double value[height][width];
+for (int y = 0; y < height; y++) {
+  for (int x = 0; x < width; x++) {
+    double nx = x/width - 0.5, 
+           ny = y/height - 0.5;
+    value[y][x] = noise(nx, ny);
   }
  }
 ```
-#### Forward Kinematics
-```processing
-      public void forwardKinematics() {
-    start.set(1, new Vec2(cos(jointAngles.get(0)) * linkLengths.get(0), sin(jointAngles.get(0)) * linkLengths.get(0)).plus(start.get(0)));
-    start.set(2, new Vec2(cos(jointAngles.get(0) + jointAngles.get(1)) * linkLengths.get(1), sin(jointAngles.get(0) + jointAngles.get(1)) * linkLengths.get(1)).plus(start.get(1)));
-    start.set(3, new Vec2(cos(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2)) * linkLengths.get(2), sin(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2)) * linkLengths.get(2)).plus(start.get(2)));
-    end = new Vec2(cos(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2) + jointAngles.get(3)) * linkLengths.get(3), sin(jointAngles.get(0) + jointAngles.get(1) + jointAngles.get(2) + jointAngles.get(3)) * linkLengths.get(3)).plus(start.get(3));
-  }
-```
+
+For our projects success, we had to use a multitude of things we learned in class.
+- RigidBody Simulation
+- Colission Detection
+- Path Finding
+- Ray Tracing
+- Terrain Generation using noise
+
+I think the limiting factor when scaling this project would be the way that we implemented our opponents in this game. Currently how it is set is there are a limited amount of opponents pregenerated that are just rendered and de-rendered based on the location of the player is on. If the map parameters were set to be bigger than they are right now, then we would need to create way more enemies which would increase the size of the projects unreasonabley. If we were to proceed with this and try to deploy it where the enemies are spwaned in dynamically, the performance would not dip regardless of the size of them map. We were able to get the generation of the blocks that are generated to be dynamic but with the opponent having so many coponents and changes and animation, it was hard for us to deploy an opponent that was competent and followed all the rules of the game.
 
 ## Media
 
