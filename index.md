@@ -11,9 +11,6 @@ We decided to create a Interactive Game called Σωτηρία (Soteria).  We lov
 
 ### Key Algorithms and Approaches
 
-### Code
-
-You can access the code [here](https://github.com/InfantDerrick/csci5611/tree/master/projects/proj3). 
 
 #### Build Using Power
 ```c#
@@ -161,12 +158,24 @@ for (int y = 0; y < height; y++) {
 
 For our projects success, we had to use a multitude of things we learned in class.
 - RigidBody Simulation
-- Colission Detection
+- Collision Detection
 - Path Finding
 - Ray Tracing
 - Terrain Generation using noise
 
 I think the limiting factor when scaling this project would be the way that we implemented our opponents in this game. Currently how it is set is there are a limited amount of opponents pregenerated that are just rendered and de-rendered based on the location of the player is on. If the map parameters were set to be bigger than they are right now, then we would need to create way more enemies which would increase the size of the projects unreasonabley. If we were to proceed with this and try to deploy it where the enemies are spwaned in dynamically, the performance would not dip regardless of the size of them map. We were able to get the generation of the blocks that are generated to be dynamic but with the opponent having so many coponents and changes and animation, it was hard for us to deploy an opponent that was competent and followed all the rules of the game.
+
+### State-of-the-Art Approaches
+
+During the related work search, we came across many papers about collision detection and planning in games. The two main state-of-the-art techniques we researched were bounding box collision detection and collision detection using air meshes. Implementing collision detection with air meshes in Unity was too challenging for what we wanted to do in Soteria. Furthermore, we wanted to make an intuitive building schema to protect the user from the zombies. To do this, we used the state-of-the-art bounding box collision detection techniques in terms of actual building blocks to test it. Unfortunately, we din't have enough time to make it more realistic so we just used building blocks like in Minecraft to show the bounding box collsion detection technique during the game. These boxes are built by the user to protect the crystal and themselves from the zombies. The zombies can't get through the boxes and tries to go to the user in another way instead because of the bounding box collision detection. Therefore, the related work research was indeed very helpful for us because we ended up using a very similar apprach to the bounding box approach that we researched as our shielding mechanism for our game.
+
+### Feedback Discussion
+
+During the progress report, we received a lot of positive feedback about how our environment looks and the overall 3D movement and rendering. However, a common suggestion for our project was to create enemies to shoot and kill so that the user has something to shoot at. In our final version, we added the zombies from the Unity Store as our targets and integrated our pathfinding algorithm and ray tracing to interact with the user. Therefore, in our final version, we successfully added enemies and other features like the shielding blocks, crystal, and ray tracing to make the overall game smoother and a lot more complete compared to the progress report. The feedback definitely helped us take the game into a better direction to create a better final version of Soteria.
+
+### Future Work
+
+There are some directions Soteria can be extended to make the interactive game even better. We can create the enemies dynamically and make sure each one is unique so that it is scaleable as more time passes and the enemies act differently so the user has to be more strategic. Also, as I mentioned earlier, the shielding mechanism is just building blocks so we would want that to be more fluid obstacles that block the zombies/enemies. Additional features that can be implemented are multiple maps/environments that the user can play in and also, include some different powerups to help the user survive. For instance, we can have a slow down power up that slows down the zombies.
 
 ## Media
 
