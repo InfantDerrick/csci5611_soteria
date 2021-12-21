@@ -9,6 +9,8 @@ For the Final Project:
 
 We decided to create a Interactive Game called Σωτηρία (Soteria).  We love playing competitive FPS games, like COD and CSGO, so we wanted to create our own FPS game using topics we covered from class this semester. We created Soteria, where the user navigates through our terrain protecting a crystal from zombies at night. To assist with survival, we created a shield mechanism with blocks using Collision Detection and Rigid Bodies to block the zombies out like in Minecraft. We implemented ray tracing to simulate bullet mechanics, which helps the user kill zombies and survive longer. The zombies will start following the user based on the user's proximity using our pathfinding algorithm. The goal of the game is to protect the crystal and stay alive as long as possible. 
 
+![Soteria](/images/csci5611.png)
+
 ### Key Algorithms and Approaches
 
 
@@ -169,6 +171,8 @@ I think the limiting factor when scaling this project would be the way that we i
 
 During the related work search, we came across many papers about collision detection and planning in games. The two main state-of-the-art techniques we researched were bounding box collision detection and collision detection using air meshes. Implementing collision detection with air meshes in Unity was too challenging for what we wanted to do in Soteria. Furthermore, we wanted to make an intuitive building schema to protect the user from the zombies. To do this, we used the state-of-the-art bounding box collision detection techniques in terms of actual building blocks to test it. Unfortunately, we didn't have enough time to make it more realistic so we just used building blocks like in Minecraft to show the bounding box collsion detection technique during the game. These boxes are built by the user to protect the crystal and the user from the zombies. The zombies can't get through the boxes and reroutes to the user in another way instead because of the bounding box collision detection technique. Therefore, the related work research was very helpful for us because we ended up using a very similar approach to the bounding box approach that we researched for the shielding mechanism in our game.
 
+![Collision Detection in Soteria](/images/collisionDetection.png)
+
 ### Feedback Discussion
 
 During the progress report, we received a lot of positive feedback about how our environment looks and the overall 3D movement and rendering. However, a common suggestion for our project was to create enemies to shoot and kill so that the user has something to shoot at. In our final version, we added the zombies from the Unity Store as our targets and integrated our pathfinding algorithm and ray tracing to interact with the user. Therefore, in our final version, we successfully added enemies and other features like the shielding blocks, crystal, and ray tracing to make the overall game smoother and a lot more complete compared to the progress report. The feedback definitely helped us take the game into a better direction to create a better final version of Soteria.
@@ -176,6 +180,7 @@ During the progress report, we received a lot of positive feedback about how our
 ### Evolution of Project
 
 While planning this project out, we intended for the building mechanics to be used in terms of a fluid particle simulation so that it can effectively block the enemies from the user. However, while implementing the game, we ended up pivoting to a rigid body simulation of simple blocks to defend the user. The enemies were supposed to be particle systems, but instead we changed to zombies. Finally, we meant for the user to use magic projectiles to attack the enemy and defend the crystal, but we didn't have time to enhance the physics of the magic so we chose to switch to use a gun with ray tracing instead.
+
 
 
 ### Future Work
