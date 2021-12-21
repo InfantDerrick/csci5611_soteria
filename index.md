@@ -181,6 +181,7 @@ During the progress report, we received a lot of positive feedback about how our
 
 While planning this project out, we intended for the building mechanics to be used in terms of a fluid particle simulation so that it can effectively block the enemies from the user. However, while implementing the game, we ended up pivoting to a rigid body simulation of simple blocks to defend the user. The enemies were supposed to be particle systems, but instead we changed to zombies. Finally, we meant for the user to use magic projectiles to attack the enemy and defend the crystal, but we didn't have time to enhance the physics of the magic so we chose to switch to use a gun with ray tracing instead.
 
+![Soteria](/images/zombies.png)
 
 
 ### Future Work
